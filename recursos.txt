@@ -1,0 +1,20 @@
+Host
+ec2-54-145-102-149.compute-1.amazonaws.com
+
+Database
+d8tvv4bh4q66pr
+
+User
+ajigwrxxtsfjgh
+
+Port
+5432
+
+Password
+eef2bb35cd85a37e7d10b5699794a552f7dd4736560b44c88126e9f1228f8f51
+
+URI
+postgres://ajigwrxxtsfjgh:eef2bb35cd85a37e7d10b5699794a552f7dd4736560b44c88126e9f1228f8f51@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d8tvv4bh4q66pr
+
+Heroku CLI
+heroku pg:psql postgresql-angular-89451 --app app-book1

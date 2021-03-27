@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+    <head>
+        <body>
+    <form action="busqueda" method="post">
+        <input type="text" autofocus class="form-control" name="busqueda" placeholder="Books" type="text"/>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
+</body>
+{% endblock %}

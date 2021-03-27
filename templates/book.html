@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    book
+{% endblock %}
+
+{% block main %}
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<style>
+    .col-sm-5{
+        background-color: rgb(79, 113, 224);
+    }
+
+    div{
+        position: static;
+    }
+</style>
+<body>
+        {% for book in query %}
+        {{book['isbn']}} <br> {{book['title']}} <br> {{book['author']}} <br>{{book['year']}}
+    {%endfor%}
+
+    <div>
+        <form action="" method="POST">
+            <div>
+                <center><div class="col-sm-5">
+                    
+                    <h5>Nº of Ratings: {{contenido['ratingsCount']}}</h5>
+                    <h5>Average Rating: {{contenido['averageRating']}}</h5>
+                    <h5>
+                        <img src="{{imagen['thumbnail']}}" alt="">
+                    </h5>
+                </div></center>
+            </div>
+            <center><div class="form-group">
+                <label for="comment">Comentario:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <br>
+                <br>
+                <input class="btn btn-primary" type="submit" value="Commentar">
+              </div></center>
+        <br>
+        <span>rating</span>
+        <select class="form-control" id="rating" name="rating" required>
+            <option selected value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        </form>
+    </div>
+    <div class="reviews">
+        <ul>
+            {%for reviews in review%}
+            <li>{{reviews['id']}}, {{reviews['username']}}, {{reviews['comment']}} , {{reviews['rating']}} , {{reviews['fecha']}} , {{reviews['hora']}}</li>
+            {%endfor%}
+        </ul>
+    </div>
+</body>
+{% endblock %}

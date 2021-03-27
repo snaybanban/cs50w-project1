@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    busqueda
+{% endblock %}
+
+{% block main %}
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<style>
+    table {
+      width: 80%;
+      border-collapse: collapse;
+    }
+
+    td, th{
+      border: 1px solid #9969BA;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even){
+      background-color: #D2B0E8;
+    }
+  </style>
+    <body>
+        <center><div>
+        <table>
+            <tr>
+                <th>ISBN</th>
+                <th>TITULO</th>
+                <th>AUTOR</th>
+                <th>AÑO</th>
+            </tr>
+                {% for books in query %}
+                <tr>
+                    <td><a href="/book/{{books['isbn']}}">{{books['isbn']}}</a></td>
+                    <td><a href="#">{{books['title']}}</a></td>
+                    <td>{{books['author']}}</td>
+                    <td>{{books['year']}}</td>
+                </tr>
+                {%endfor%}
+        </table>
+    
+        </div></center>
+</body>
+{% endblock %}
