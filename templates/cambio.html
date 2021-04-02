@@ -1,11 +1,11 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 {% block title %}
-    Log In
+Cambio de Contraseña
 {% endblock %}
 
 {% block main %}
-<style>
+<style>      
     .form-register {
         background-attachment: fixed;
         width: 400px;
@@ -49,13 +49,17 @@
                 width: 100%;
             }
       }
+      
 </style>
-    <form action="/login" method="post">
+<body>
+    <form action="/cambio" method="POST">
         <section class="form-register">
-        <h4>Iniciar sesíon</h4>
-        <input class="controls" type="text" autofocus class="form-control" name="username" placeholder="Nombre de usuario">
-        <input class="controls" type="password" name="password" placeholder="Contraseña">
-        <input class="botons" type="submit" value="Ingresar">
-        </section>
-  </form>
-{% endblock %}
+          <h4>Cambio de Contraseña</h4>
+          <input class="controls" type="text" name="username" id="usernameinput" placeholder="Nombre de usuario">
+          <input class="controls" type="password" name="password" id="passwordinput" placeholder="Nueva Contraseña">
+          <input class="controls" type="password" name="confirmation" id="passwordvinput" placeholder="Confirmar Contraseña">
+          <input class="botons" type="submit" value="Cambiar">
+      </section>
+      </form>
+</body>
+{%endblock%}

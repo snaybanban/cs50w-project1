@@ -1,63 +1,121 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    book
+book
 {% endblock %}
 
 {% block main %}
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
-</head>
+
 <style>
-    .col-sm-5{
+    .col-sm-5 {
         background-color: rgb(79, 113, 224);
     }
 
-    div{
-        position: static;
+    .card-title{
+        color: black;
+        font-weight: 700;
     }
-</style>
-<body>
-        {% for book in query %}
-        {{book['isbn']}} <br> {{book['title']}} <br> {{book['author']}} <br>{{book['year']}}
-    {%endfor%}
 
-    <div>
+    .card-text{
+        text-align: justify;
+    }
+
+    .info{
+        color: black;
+    }
+
+.card-body{
+    background-color: #757AFF;
+}
+
+</style>
+
+<body>
+    <center>
+    <div class="col-md-7">
         <form action="" method="POST">
-            <div>
-                <center><div class="col-sm-5">
-                    
-                    <h5>Nº of Ratings: {{contenido['ratingsCount']}}</h5>
-                    <h5>Average Rating: {{contenido['averageRating']}}</h5>
-                    <h5>
-                        <img src="{{imagen['thumbnail']}}" alt="">
-                    </h5>
-                </div></center>
+            <div class="card border-secundary" style="color: #673755;">
+                <div class="card-body">
+                    {% for book in query %}
+                    <h5 class="card-title">{{book['title']}}</h5>
+                    <img class=" card-img w-50 h-100 m-auto" src="{{imagen['thumbnail']}}" alt="Imagen del Libro">
+                    <div class="info">
+                        <h6>Autor: {{book['author']}}, Año: {{book['year']}}</h6>
+                    </div>
+                    {%endfor%}
+                    <br>
+                    <p class="card-text">
+                        {{contenido['description']}}
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Nº of Ratings: {{contenido['ratingsCount']}}</li>
+                        <li class="list-group-item">Average Rating: {{contenido['averageRating']}}</li>
+                    </ul>
+                </div>
             </div>
-            <center><div class="form-group">
-                <label for="comment">Comentario:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
-                <br>
-                <br>
-                <input class="btn btn-primary" type="submit" value="Commentar">
-              </div></center>
+        </div>
+    </center>
         <br>
-        <span>rating</span>
-        <select class="form-control" id="rating" name="rating" required>
-            <option selected value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        </form>
-    </div>
-    <div class="reviews">
-        <ul>
-            {%for reviews in review%}
-            <li>{{reviews['id']}}, {{reviews['username']}}, {{reviews['comment']}} , {{reviews['rating']}} , {{reviews['fecha']}} , {{reviews['hora']}}</li>
-            {%endfor%}
-        </ul>
-    </div>
+        <center>
+            <div class="col-md-7">
+                <div class="card border-primary">
+                    <h4 class="card-header text-center " style="background-color: #385ECE; color: white;">Puntuación</h4>
+                    <div class="card-body">
+                        <div class="card-text">
+                        <ul class="list-group col-md-12 col-sm-12">
+                            <form action="" method="POST">
+                                <label for="comment">Comentario:</label>
+                                <textarea class="form-control" rows="4" placeholder="Reviews" name="comment"></textarea>
+                                <br>
+                                <span>Puntiación:</span>
+                                <select class="form-control" id="rating" name="rating" required>
+                                    <option selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <br>
+                                <input class="btn btn-dark" type="submit" value="Comentar">
+                            </form>
+                        </div>
+                        </ul>
+                    </div>
+        
+                </div>
+                <div>
+                    <div class="card border-primary mt-2">
+                        <h4 class=" card-header text-center" style="background-color: #385ECE; color: white;">Comentarios
+                        </h4>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <ul class="list-group col-md-12 col-sm-12">
+                                    {%for reviews in review%}
+                                    <li class="list-group-item list-group-item-action">
+                                        <span class="color-dark"
+                                            style="color: #385ECE; font-size: 18px; text-transform:capitalize;">{{reviews['username']}}</span>
+                                        <br>
+                                        <div>
+                                            {{reviews['comment']}}
+                                        </div>
+                                        <br>
+                                        <div class="puntuacion d-flex justify-content-end align-items-end">
+                                            <div class="mr-2">
+                                                Puntuación: {{reviews['rating']}}
+                                            </div>
+                                            <span class="mr-2">{{reviews['fecha']}}</span>
+                                            <span>{{reviews['hora']}}</span>
+                                        </div>
+        
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                </div>
+            </div></center>
 </body>
 {% endblock %}
